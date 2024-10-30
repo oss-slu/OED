@@ -665,11 +665,12 @@ async function processData(rows, meterID, timeSort = MeterTimeSortTypesJS.increa
 
 		if (disableChecks != 'yes_no_checks') {
 			const { validReadings, errMsg: newErrMsg } = validateReadings(result, conditionSet, meterName);
-			({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, newErrMsg, msgTotalWarning));}
+			({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, newErrMsg, msgTotalWarning));
+		}
 
-		
-			if (!validReadings) {
-				if (disableChecks === 'no_reject_all'){
+
+		if (!validReadings) {
+			if (disableChecks === 'no_reject_all') {
 				errMsg = `<h2>For meter ${meterName}: error when validating data so all reading are rejected</h2>`;
 				log.error(errMsg);
 				({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, errMsg, msgTotalWarning));
@@ -677,39 +678,39 @@ async function processData(rows, meterID, timeSort = MeterTimeSortTypesJS.increa
 				result.splice(0, result.length);
 				isAllReadingsOk = false;
 				return { result, isAllReadingsOk, msgTotal };
-				} else if (disableChecks === 'no_reject_bad') {
-					errMsg = '<h2>For meter ${meterName}: error when validating some readings, but valid readings are accepted</h2>';
-					log.warn(errMsg);
-					({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, errMsg, msgTotalWarning));
-					// only keep valid readings, leave the invalid ones out of the result
-					isAllReadingsOk = false;
-				}
+			} else if (disableChecks === 'no_reject_bad') {
+				errMsg = '<h2>For meter ${meterName}: error when validating some readings, but valid readings are accepted</h2>';
+				log.warn(errMsg);
+				({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, errMsg, msgTotalWarning));
+				// only keep valid readings, leave the invalid ones out of the result
+				isAllReadingsOk = false;
 			}
 		}
 	}
-	// Update the meter to contain information for the last reading in the data file.
-	// Note this means that even if the last value was rejected we still store it as
-	// the next previous reading. This is probably a good idea, in general, but it is
-	// possible an undesirable time is saved at points. This will lead to messages on
-	// the next upload. Also note that the update does not happen if all the values
-	// are rejected as a batch (so return before this point).
-	// We need to set this as a string to preserve the time shift info.
-	meter.startTimestamp = startTimestampTz.format('YYYY-MM-DD HH:mm:ssZ');
-	meter.endTimestamp = endTimestampTz.format('YYYY-MM-DD HH:mm:ssZ');
-	// Make sure previousEnd is updated.
-	meter.previousEnd = prevEndTimestamp;
-	await meter.update(conn);
-	// Let the user know exactly which readings were dropped if any before continuing and add to the total messages.
-	if (readingsDropped.length !== 0) {
-		({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, '<h2>Readings Dropped and should have previous messages</h2><ol>', msgTotalWarning));
-		readingsDropped.forEach(readingNum => {
-			let messageNew = '<li>Dropped Reading #' + readingNum + ' for meter ' + meterName + '</li>'; log.info(messageNew);
-			({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, messageNew, msgTotalWarning));
-		});
-		// Assume the <ol> was put in. If not, get minor HTML syntax issue.
-		msgTotal += '</ol>';
-	}
-	return { result, isAllReadingsOk, msgTotal };
+
+// Update the meter to contain information for the last reading in the data file.
+// Note this means that even if the last value was rejected we still store it as
+// the next previous reading. This is probably a good idea, in general, but it is
+// possible an undesirable time is saved at points. This will lead to messages on
+// the next upload. Also note that the update does not happen if all the values
+// are rejected as a batch (so return before this point).
+// We need to set this as a string to preserve the time shift info.
+meter.startTimestamp = startTimestampTz.format('YYYY-MM-DD HH:mm:ssZ');
+meter.endTimestamp = endTimestampTz.format('YYYY-MM-DD HH:mm:ssZ');
+// Make sure previousEnd is updated.
+meter.previousEnd = prevEndTimestamp;
+// await meter.update(conn);
+// Let the user know exactly which readings were dropped if any before continuing and add to the total messages.
+if (readingsDropped.length !== 0) {
+	({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, '<h2>Readings Dropped and should have previous messages</h2><ol>', msgTotalWarning));
+	readingsDropped.forEach(readingNum => {
+		let messageNew = '<li>Dropped Reading #' + readingNum + ' for meter ' + meterName + '</li>'; log.info(messageNew);
+		({ msgTotal, msgTotalWarning } = appendMsgTotal(msgTotal, messageNew, msgTotalWarning));
+	});
+	// Assume the <ol> was put in. If not, get minor HTML syntax issue.
+	msgTotal += '</ol>';
+}
+return { result, isAllReadingsOk, msgTotal };
 }
 
 /**
