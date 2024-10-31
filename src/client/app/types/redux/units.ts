@@ -31,6 +31,8 @@ export interface UnitData {
 	displayable: DisplayableType;
 	preferredDisplay: boolean;
 	note: string;
+	defaultMeterMinimumValue:-999999999999,
+	defaultMeterMaximumValue:999999999999,
 }
 
 export interface UnitEditData {
@@ -44,6 +46,8 @@ export interface UnitEditData {
 	displayable: DisplayableType;
 	preferredDisplay: boolean;
 	note: string;
+	defaultMeterMinimumValue:-999999999999,
+	defaultMeterMaximumValue:999999999999,
 }
 
 export interface UnitDataById extends Record<number, UnitData> { }

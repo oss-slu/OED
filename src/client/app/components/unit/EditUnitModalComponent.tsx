@@ -418,6 +418,38 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 							</FormFeedback>
 						</FormGroup></Col>
 					</Row>
+					<Row xs='1' lg='2'>
+						{/* Min Value input */}
+						<Col><FormGroup>
+							<Label for='defaultMeterMinimumValue'>{translate('default.meter.minimum.value')}</Label>
+							<Input
+								id='defaultMeterMinimumValue'
+								name='defaultMeterMinimumValue'
+								type='number'
+								onChange={e => handleNumberChange(e)}
+								defaultValue={state.defaultMeterMinimumValue}
+								placeholder='Minimum Value'/>
+							<FormFeedback>
+								<FormattedMessage id="error.required" />
+							</FormFeedback>
+						</FormGroup></Col>
+					</Row>
+					<Row xs='1' lg='2'>
+						{/* Min Value input */}
+						<Col><FormGroup>
+							<Label for='defaultMeterMaximumValue'>{translate('default.meter.maximum.value')}</Label>
+							<Input
+								id='defaultMeterMaximumValue'
+								name='defaultMeterMaximumValue'
+								type='number'
+								onChange={e => handleNumberChange(e)}
+								defaultValue={state.defaultMeterMaximumValue}
+								placeholder='Miximum Value'/>
+							<FormFeedback>
+								<FormattedMessage id="error.required" />
+							</FormFeedback>
+						</FormGroup></Col>
+					</Row>
 					{/* Note input */}
 					<FormGroup>
 						<Label for='note'>{translate('unit')}</Label>
