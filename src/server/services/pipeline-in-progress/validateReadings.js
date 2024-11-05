@@ -87,7 +87,7 @@ function checkDate(arrayToValidate, minDate, maxDate, maxError, meterIdentifier)
  * @returns {object} { validValues, invalidValues, errMsg }
  */
 function checkValue(arrayToValidate, minVal, maxVal, maxError, meterIdentifier) {
-	let validValues = true;
+	let validValues = [];
 	let invalidValues = [];
 	let errMsg = '';
 	let readingNumber = 0;
@@ -104,7 +104,7 @@ function checkValue(arrayToValidate, minVal, maxVal, maxError, meterIdentifier) 
 			log.error(newErrMsg);
 			errMsg += '<br>' + newErrMsg + '<br>';
 			--maxError;
-			validValues = false;
+			invalidValues.push(reading);
 		} else if (reading.reading > maxVal) {
 			const newErrMsg = `error when checking reading value for #${readingNumber} on meter ${meterIdentifier}: ` +
 			`value ${reading.reading} is larger than upper bound ${maxVal} ` +
