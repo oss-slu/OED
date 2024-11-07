@@ -433,9 +433,8 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 								<FormattedMessage id="error.required" />
 							</FormFeedback>
 						</FormGroup></Col>
-					</Row>
-					<Row xs='1' lg='2'>
-						{/* Min Value input */}
+					
+						{/* Max Value input */}
 						<Col><FormGroup>
 							<Label for='defaultMeterMaximumValue'>{translate('default.meter.maximum.value')}</Label>
 							<Input
