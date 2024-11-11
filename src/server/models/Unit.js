@@ -17,9 +17,9 @@ class Unit {
 	 * @param {*} suffix This unit's suffix.
 	 * @param {*} displayable Can be none, all, or admin. Restrict the type of user that can see this unit.
 	 * @param {*} preferredDisplay True if this unit is always displayed. If not, the user needs to ask to see (for future enhancement).
-	 * @param {*} note Note about this unit.
 	 * @param {*} defaultMeterMinimumValue The default minimum value for meters.
 	 * @param {*} defaultMeterMaximumValue The default maximum value for meters.
+	 * @param {*} note Note about this unit.
 	 */
 	constructor(id, name, identifier = name, unitRepresent, secInRate = 3600, typeOfUnit, suffix = '', displayable, preferredDisplay,defaultMeterMinimumValue, defaultMeterMaximumValue, note) {
 		this.id = id;

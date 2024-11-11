@@ -33,9 +33,9 @@ export default function CreateUnitModalComponent() {
 		preferredDisplay: true,
 		secInRate: 3600,
 		suffix: '',
+		defaultMeterMinimumValue:Number.MIN_SAFE_INTEGER,
+		defaultMeterMaximumValue:Number.MAX_SAFE_INTEGER,
 		note: '',
-		defaultMeterMinimumValue:-999999999999,
-		defaultMeterMaximumValue:999999999999,
 		// These two values are necessary but are not used.
 		// The client code makes the id for the selected unit and default graphic unit be -99
 		// so it can tell it is not yet assigned and do the correct logic for that case.
@@ -299,8 +299,6 @@ export default function CreateUnitModalComponent() {
 								<FormattedMessage id="error.required" />
 							</FormFeedback>
 						</FormGroup></Col>
-
-
 					</Row>
 					{/* Note input */}
 					<FormGroup>

@@ -9,6 +9,7 @@ const Unit = require('../models/Unit');
 const { removeAdditionalConversionsAndUnits } = require('../services/graph/handleSuffixUnits');
 const validate = require('jsonschema').validate;
 const { success, failure } = require('./response');
+const { max, min } = require('lodash');
 
 const router = express.Router();
 
@@ -16,7 +17,9 @@ function formatUnitForResponse(item) {
 	return {
 		id: item.id, name: item.name, identifier: item.identifier, unitRepresent: item.unitRepresent,
 		secInRate: item.secInRate, typeOfUnit: item.typeOfUnit, suffix: item.suffix,
-		displayable: item.displayable, preferredDisplay: item.preferredDisplay, note: item.note
+		displayable: item.displayable, preferredDisplay: item.preferredDisplay, 
+		defaultMeterMinimumValue: item.defaultMeterMinimumValue, 
+		defaultMeterMaximumValue: item.defaultMeterMaximumValue, note: item.note
 	};
 }
 
@@ -66,6 +69,12 @@ router.post('/edit', async (req, res) => {
 			},
 			suffix: {
 				type: 'string'
+			},
+			minValue: {
+				type: 'number',
+			},
+			maxValue: {
+				type: 'number',
 			},
 			displayable: {
 				type: 'string',

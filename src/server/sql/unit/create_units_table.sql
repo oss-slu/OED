@@ -12,5 +12,7 @@ CREATE TABLE IF NOT EXISTS units (
 	suffix VARCHAR(50) DEFAULT '',
 	displayable displayable_type NOT NULL,
 	preferred_display BOOLEAN NOT NULL,
+	default_meter_minimum_value INTEGER NOT NULL,
+	default_meter_maximum_value INTEGER NOT NULL,
 	note TEXT
 );

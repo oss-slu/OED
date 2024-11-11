@@ -79,6 +79,8 @@ export const NoUnit: UnitData = {
 	suffix: '',
 	displayable: DisplayableType.none,
 	preferredDisplay: false,
+	defaultMeterMinimumValue: 0,
+	defaultMeterMaximumValue: 0,
 	note: ''
 };
 

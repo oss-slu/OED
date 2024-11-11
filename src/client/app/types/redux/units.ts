@@ -30,9 +30,9 @@ export interface UnitData {
 	suffix: string;
 	displayable: DisplayableType;
 	preferredDisplay: boolean;
+	defaultMeterMinimumValue:number;
+	defaultMeterMaximumValue:number;
 	note: string;
-	defaultMeterMinimumValue:number,
-	defaultMeterMaximumValue:number
 }
 
 export interface UnitEditData {
