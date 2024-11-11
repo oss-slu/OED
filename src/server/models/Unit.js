@@ -21,7 +21,8 @@ class Unit {
 	 * @param {*} defaultMeterMinimumValue The default minimum value for meters.
 	 * @param {*} defaultMeterMaximumValue The default maximum value for meters.
 	 */
-	constructor(id, name, identifier = name, unitRepresent, secInRate = 3600, typeOfUnit, suffix = '', displayable, preferredDisplay, defaultMeterMinimumValue, defaultMeterMaximumValue, note) {
+	constructor(id, name, identifier = name, unitRepresent, secInRate = 3600, typeOfUnit, suffix = '', displayable, preferredDisplay, defaultMeterMinimumValue, defaultMeterMaximumValue, minimumReadingDateCheck,
+ maximumReadingDateCheck, note) {
 		this.id = id;
 		this.name = name;
 		this.identifier = identifier;
@@ -32,7 +33,9 @@ class Unit {
 		this.displayable = displayable;
 		this.preferredDisplay = preferredDisplay;
 		this.defaultMeterMinimumValue = defaultMeterMinimumValue;
-		this.defaultMeterMaximumValue = defaultMeterMaximumValue
+		this.defaultMeterMaximumValue = defaultMeterMaximumValue;
+		this.minimumReadingDateCheck = minimumReadingDateCheck;
+		this.maximumReadingDateCheck = maximumReadingDateCheck;
 		this.note = note;
 	}
 

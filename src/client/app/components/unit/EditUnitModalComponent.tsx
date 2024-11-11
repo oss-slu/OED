@@ -449,6 +449,52 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 							</FormFeedback>
 						</FormGroup></Col>
 					</Row>
+					<Row xs='1' lg='2'>
+						{/* Min Value input */}
+						<Col><FormGroup>
+							<Label for='minimumReadingDateCheck'>{translate('minimum.reading.date.check')}</Label>
+							<Input
+								id='minimumReadingDateCheck'
+								name='minimumReadingDateCheck'
+								type='number'
+								onChange={e => handleNumberChange(e)}
+								defaultValue={state.defaultMeterMinimumValue}
+								placeholder='Minimum Value'/>
+							<FormFeedback>
+								<FormattedMessage id="error.required" />
+							</FormFeedback>
+						</FormGroup></Col>
+					
+						{/* Max Value input */}
+						<Col><FormGroup>
+							<Label for='maximumReadingDateCheck'>{translate('maximum.reading.date.check')}</Label>
+							<Input
+								id='maximumReadingDateCheck'
+								name='maximumReadingDateCheck'
+								type='number'
+								onChange={e => handleNumberChange(e)}
+								defaultValue={state.defaultMeterMaximumValue}
+								placeholder='Miximum Value'/>
+							<FormFeedback>
+								<FormattedMessage id="error.required" />
+							</FormFeedback>
+						</FormGroup></Col>
+					</Row>
+					{/*Disable checks box */}
+					<FormGroup>
+						<Label for='disableChecks'>{translate('disable.checks')}</Label>
+						<Input
+							id='disablechecks'
+							name='disablechecks'
+							type='select'
+							value={state.note}
+							onChange={e => handleStringChange(e)}>
+							<option value=''> Select an option </option>
+							<option value='No, only reject the bad reading(s)'> No, only reject the bad reading(s) </option>
+							<option value='No, reject all readings in batch'> No, reject all readings in batch </option>
+							<option value='Yes, do not check values'> Yes, do not check value </option>
+						</Input>
+					</FormGroup>
 					{/* Note input */}
 					<FormGroup>
 						<Label for='note'>{translate('unit')}</Label>
