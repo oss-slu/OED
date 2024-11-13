@@ -421,10 +421,10 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 					<Row xs='1' lg='2'>
 						{/* Min Value input */}
 						<Col><FormGroup>
-							<Label for='defaultMeterMinimumValue'>{translate('default.meter.minimum.value')}</Label>
+							<Label for='minimumReadingValueCheck'>{translate('minimum.reading.value.check')}</Label>
 							<Input
-								id='defaultMeterMinimumValue'
-								name='defaultMeterMinimumValue'
+								id='minimumReadingValueCheck'
+								name='minimumReadingValueCheck'
 								type='number'
 								onChange={e => handleNumberChange(e)}
 								defaultValue={state.defaultMeterMinimumValue}
@@ -436,10 +436,10 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 					
 						{/* Max Value input */}
 						<Col><FormGroup>
-							<Label for='defaultMeterMaximumValue'>{translate('default.meter.maximum.value')}</Label>
+							<Label for='maximumReadingValueCheck'>{translate('maximum.reading.value.check')}</Label>
 							<Input
-								id='defaultMeterMaximumValue'
-								name='defaultMeterMaximumValue'
+								id='maximumReadingValueCheck'
+								name='maximumReadingValueCheck'
 								type='number'
 								onChange={e => handleNumberChange(e)}
 								defaultValue={state.defaultMeterMaximumValue}
@@ -484,8 +484,8 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 					<FormGroup>
 						<Label for='disableChecks'>{translate('disable.checks')}</Label>
 						<Input
-							id='disablechecks'
-							name='disablechecks'
+							id='disableChecks'
+							name='disableChecks'
 							type='select'
 							value={state.note}
 							onChange={e => handleStringChange(e)}>
