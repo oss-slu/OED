@@ -602,6 +602,23 @@ export default function CreateMeterModalComponent(props: CreateMeterModalProps):
 					</Row>
 					<Row xs='1' lg='2'>
 						{/* DisableChecks input */}
+						<Col><FormGroup>
+							<Label for='disableChecks'>{translate('meter.disableChecks')}</Label>
+							<Input 
+								id='disableChecks' 
+								name='disableChecks' 
+								type='select'
+								value={localMeterEdits?.disableChecks?.toString()}
+								onChange={e => handleBooleanChange(e)}
+								invalid={localMeterEdits?.disableChecks && localMeterEdits.unitId === -99}>
+								{Object.keys(TrueFalseType).map(key => {
+									return (<option value={key} key={key}>{translate('TrueFalseType.${key}')}</option>)
+								})}
+								<option value="no_reject_bad">No Reject Bad</option>
+								<option value="no_reject_all">No Reject All</option>
+								<option value="yes_no_checks">Yes, No Checks</option>
+								</Input>
+							</FormGroup></Col>
 						{/* maxError input */}
 						<Col><FormGroup>
 							<Label for='maxError'>{translate('meter.maxError')}</Label>

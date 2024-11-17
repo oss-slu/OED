@@ -2,11 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-CREATE TYPE disable_checks_enum AS ENUM (
-	'no_reject_bad',
-	'no_reject_all',
-	'yes_no_checks'
-);
 -- create preferences table
 CREATE TABLE IF NOT EXISTS preferences (
 	id SERIAL PRIMARY KEY,
