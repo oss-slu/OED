@@ -15,6 +15,7 @@ import { tooltipBaseStyle } from '../../styles/modalStyle';
 import { unitsApi } from '../../redux/api/unitsApi';
 import { useTranslate } from '../../redux/componentHooks';
 import { showSuccessNotification, showErrorNotification } from '../../utils/notifications';
+import { MAX_VAL, MIN_VAL } from '../../redux/selectors/adminSelectors';
 
 /**
  * Defines the create unit modal form
@@ -33,8 +34,8 @@ export default function CreateUnitModalComponent() {
 		preferredDisplay: true,
 		secInRate: 3600,
 		suffix: '',
-		defaultMeterMinimumValue:Number.MIN_SAFE_INTEGER,
-		defaultMeterMaximumValue:Number.MAX_SAFE_INTEGER,
+		defaultMeterMinimumValue: MIN_VAL,
+		defaultMeterMaximumValue: MAX_VAL,
 		note: '',
 		// These two values are necessary but are not used.
 		// The client code makes the id for the selected unit and default graphic unit be -99
