@@ -261,6 +261,12 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 		tooltipEditUnitView: 'help.admin.unitedit'
 	};
 
+	const DisableChecks = {
+		REJECT_BAD: 'No, only reject the bad reading(s)',
+		REJECT_ALL: 'No, reject all readings in batch',
+		DISABLE_CHECKS: 'Yes, do not check values',
+	};
+
 	return (
 		<>
 			<ConfirmActionModalComponent
@@ -433,44 +439,12 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 								<FormattedMessage id="error.required" />
 							</FormFeedback>
 						</FormGroup></Col>
-					
 						{/* Max Value input */}
 						<Col><FormGroup>
 							<Label for='maximumReadingValueCheck'>{translate('maximum.reading.value.check')}</Label>
 							<Input
 								id='maximumReadingValueCheck'
 								name='maximumReadingValueCheck'
-								type='number'
-								onChange={e => handleNumberChange(e)}
-								defaultValue={state.defaultMeterMaximumValue}
-								placeholder='Miximum Value'/>
-							<FormFeedback>
-								<FormattedMessage id="error.required" />
-							</FormFeedback>
-						</FormGroup></Col>
-					</Row>
-					<Row xs='1' lg='2'>
-						{/* Min Value input */}
-						<Col><FormGroup>
-							<Label for='minimumReadingDateCheck'>{translate('minimum.reading.date.check')}</Label>
-							<Input
-								id='minimumReadingDateCheck'
-								name='minimumReadingDateCheck'
-								type='number'
-								onChange={e => handleNumberChange(e)}
-								defaultValue={state.defaultMeterMinimumValue}
-								placeholder='Minimum Value'/>
-							<FormFeedback>
-								<FormattedMessage id="error.required" />
-							</FormFeedback>
-						</FormGroup></Col>
-					
-						{/* Max Value input */}
-						<Col><FormGroup>
-							<Label for='maximumReadingDateCheck'>{translate('maximum.reading.date.check')}</Label>
-							<Input
-								id='maximumReadingDateCheck'
-								name='maximumReadingDateCheck'
 								type='number'
 								onChange={e => handleNumberChange(e)}
 								defaultValue={state.defaultMeterMaximumValue}
@@ -490,9 +464,10 @@ export default function EditUnitModalComponent(props: EditUnitModalComponentProp
 							value={state.note}
 							onChange={e => handleStringChange(e)}>
 							<option value=''> Select an option </option>
-							<option value='No, only reject the bad reading(s)'> No, only reject the bad reading(s) </option>
-							<option value='No, reject all readings in batch'> No, reject all readings in batch </option>
-							<option value='Yes, do not check values'> Yes, do not check value </option>
+							{Object.values(DisableChecks).map((option) => (
+            					<option key={option} value={option}>
+                					{option}
+            					</option>))}
 						</Input>
 					</FormGroup>
 					{/* Note input */}

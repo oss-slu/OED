@@ -48,8 +48,6 @@ export interface UnitEditData {
 	note: string;
 	defaultMeterMinimumValue: number;
 	defaultMeterMaximumValue: number;
-	minimumReadingDateCheck: number;
-	maximumReadingDateCheck: number;
 }
 
 export interface UnitDataById extends Record<number, UnitData> { }
