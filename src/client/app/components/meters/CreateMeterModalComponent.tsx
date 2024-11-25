@@ -21,6 +21,7 @@ import {
 import '../../styles/modal.css';
 import { tooltipBaseStyle } from '../../styles/modalStyle';
 import { TrueFalseType } from '../../types/items';
+import { disable_checks_enum } from '/Users/nischitanannapaneni/capstone2/OED/src/server/sql/preferences/create_disable_checks_enum.sql'
 import { MeterData, MeterTimeSortType, MeterType } from '../../types/redux/meters';
 import { GPSPoint, isValidGPSInput } from '../../utils/calibration';
 import { AreaUnitType } from '../../utils/getAreaUnitConversion';
@@ -608,17 +609,19 @@ export default function CreateMeterModalComponent(props: CreateMeterModalProps):
 								id='disableChecks' 
 								name='disableChecks' 
 								type='select'
-								value={localMeterEdits?.disableChecks?.toString()}
-								onChange={e => handleBooleanChange(e)}
-								invalid={localMeterEdits?.disableChecks && localMeterEdits.unitId === -99}>
-								{Object.keys(TrueFalseType).map(key => {
-									return (<option value={key} key={key}>{translate('TrueFalseType.${key}')}</option>)
-								})}
-								<option value="no_reject_bad">No Reject Bad</option>
-								<option value="no_reject_all">No Reject All</option>
-								<option value="yes_no_checks">Yes, No Checks</option>
-								</Input>
-							</FormGroup></Col>
+								value={meterDetails.disableChecks}
+								onChange={e => setMeterDetails({...meterDetails, disableChecks: e.target.value as disable_checks_enum
+							>	
+								{Object.values(disable_checks_enum).map((option) => (
+									<option value = {option} key={option}>
+										{translate('disable_checks_enum.${option}')}
+									</option>
+								))}
+							</Input>
+							<FormFeedback>
+								<FormattedMessage id="error.required" />
+							</FormFeedback>
+						</FormGroup></Col>
 						{/* maxError input */}
 						<Col><FormGroup>
 							<Label for='maxError'>{translate('meter.maxError')}</Label>

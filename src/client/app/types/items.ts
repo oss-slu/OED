@@ -8,6 +8,7 @@ import { AreaUnitType } from '../utils/getAreaUnitConversion';
 import { MeterData } from './redux/meters';
 import { GroupData } from './redux/groups';
 import { UnitData } from './redux/units';
+import { disable_checks_enum } from 'src/server/sql/preferences/create_disable_checks_enum.sql'
 
 /**
  * The type of options displayed in Select components.
@@ -63,7 +64,7 @@ export interface PreferenceRequestItem {
 	defaultMeterMaximumDate: string;
 	defaultMeterReadingGap: number;
 	defaultMeterMaximumErrors: number;
-	defaultMeterDisableChecks: boolean;
+	defaultMeterDisableChecks: disable_checks_enum;
 	defaultHelpUrl: string;
 }
 
