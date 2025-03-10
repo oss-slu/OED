@@ -1,6 +1,7 @@
 {
 	"name": "open-energy-dashboard",
 	"version": "1.0.0",
+	"type": "module",
 	"private": false,
 	"license": "MPL-2.0",
 	"repository": "https://github.com/OpenEnergyDashboard/OED",
