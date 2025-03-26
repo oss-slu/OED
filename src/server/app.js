@@ -33,6 +33,9 @@ const units = require('./routes/units');
 const conversions = require('./routes/conversions');
 const ciks = require('./routes/ciks');
 
+const weatherRoutes = require('./routes/weatherRoutes')
+require('./scheduler/weatherScheduler') // Automatically starts scheduler
+
 // Limit the rate of overall requests to OED
 // Note that the rate limit may make the automatic test return the value of 429. In that case, the limiters below need to be increased.
 // TODO Verify that user see the message returned, see https://express-rate-limit.mintlify.app/reference/configuration#message
@@ -49,27 +52,27 @@ const generalLimiter = rateLimit({
 				You have been rate limited by your OED site.
 			</h1>
 			<h2 style ='text-align:center'>
-				We suggest you try these in this order: 
+				We suggest you try these in this order:
 			</h2>
-			<h2 
+			<h2
 				style='text-align:center'>
 			</h2>
-			<div> 
-				<ol style = "text-align: center; list-style-position: inside;"> 
+			<div>
+				<ol style = "text-align: center; list-style-position: inside;">
 					<li>
 						Click the 'Refresh this page' button below to try again.
 					</li>
-					<li> 
+					<li>
 						If you keep returning to this page wait longer and click 'Refresh this page' button.
-					</li> 
+					</li>
 					<li>
 						Contact your site to find why the rate limit is denying access to the OED site.
-					</li> 
-				</ol>  
+					</li>
+				</ol>
 			</div>
 			<h3 style='text-align:center'>
-				<button onClick='window.location.reload();'> 
-					Refresh this page 
+				<button onClick='window.location.reload();'>
+					Refresh this page
 				</button>
 			</h3>
 		`
@@ -130,6 +133,9 @@ app.use('/api/conversion-array', conversionArray);
 app.use('/api/units', units);
 app.use('/api/conversions', conversions);
 app.use('/api/ciks', ciks);
+
+app.use('/api/weather', weatherRoutes);
+
 app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
 
 const router = express.Router();
