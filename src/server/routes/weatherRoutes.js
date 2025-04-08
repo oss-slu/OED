@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchWeatherData } =  require('../services/weather/fetchTemperature.js');
+const fetchWeatherData =  require('../services/weather/fetchTemperature.js');
 
 const router = express.Router();
 
