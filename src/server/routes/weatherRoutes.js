@@ -4,7 +4,7 @@ const { fetchWeatherData } =  require('../services/weather/fetchTemperature.js')
 const router = express.Router();
 
 // Endpoint to fetch weather data for a given date range
-router.get('/weather', async (req, res) => {
+router.get('/', async (req, res) => {
   const { start_date, end_date } = req.query;
   if (!start_date || !end_date) {
     return res.status(400).json({ error: "Please provide both start_date and end_date" });
