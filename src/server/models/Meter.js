@@ -362,7 +362,6 @@ Meter.type = {
 };
 
 Meter.associate = (models) => {
-	// Existing associations...
 	Meter.belongsTo(models.Location, { foreignKey: 'location_id' });
   };
 
@@ -377,18 +376,17 @@ Meter.associate = (models) => {
 		type: DataTypes.STRING,
 		allowNull: false
 	  },
-	  // here's the foreign key
 	  location_id: {
 		type: DataTypes.INTEGER,
-		allowNull: true, // or false if required
+		allowNull: true, 
 		references: {
-		  model: 'locations', // table name (plural if you're using pluralization)
+		  model: 'locations', 
 		  key: 'id'
 		}
 	  }
 	}, {
-	  tableName: 'users', // optional: only if you're specifying table name manually
-	  timestamps: false // or true if you use createdAt/updatedAt
+	  tableName: 'users', 
+	  timestamps: false 
 	});
   
 	return User;
