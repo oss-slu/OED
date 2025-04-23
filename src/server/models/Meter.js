@@ -361,4 +361,38 @@ Meter.type = {
 	OTHER: 'other'
 };
 
+Meter.associate = (models) => {
+	// Existing associations...
+	Meter.belongsTo(models.Location, { foreignKey: 'location_id' });
+  };
+
+  module.exports = (sequelize, DataTypes) => {
+	const User = sequelize.define('User', {
+	  id: {
+		type: DataTypes.INTEGER,
+		primaryKey: true,
+		autoIncrement: true
+	  },
+	  name: {
+		type: DataTypes.STRING,
+		allowNull: false
+	  },
+	  // here's the foreign key
+	  location_id: {
+		type: DataTypes.INTEGER,
+		allowNull: true, // or false if required
+		references: {
+		  model: 'locations', // table name (plural if you're using pluralization)
+		  key: 'id'
+		}
+	  }
+	}, {
+	  tableName: 'users', // optional: only if you're specifying table name manually
+	  timestamps: false // or true if you use createdAt/updatedAt
+	});
+  
+	return User;
+  };
+  
+
 module.exports = Meter;
