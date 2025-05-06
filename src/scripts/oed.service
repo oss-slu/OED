@@ -1,0 +1,26 @@
+# To use:
+# This should be copied to /etc/systemd/system/ and the copy renamed so that its function will be clear to admins.
+# 1) Modify the WorkingDirectory variable to set it to the root directory of OED
+# 2) Modify the user variable to set it to the user that has permission to run OED. While this could be root, it is best
+# to use a non-privileged user for security reasons. This can normally be the user that cloned the OED git repository
+# and owns the OED files.
+
+[Unit]
+Description=OED
+Requires=docker.service
+After=docker.service
+
+[Service]
+# Modify only if your docker is located somewhere else or you have an old system with only docker-compose.
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+WorkingDirectory=/example/path/to/project/OED
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=OED
+User=example_user
+
+[Install]
+WantedBy=multi-user.target

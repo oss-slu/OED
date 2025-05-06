@@ -1,0 +1,61 @@
+# *
+# * This Source Code Form is subject to the terms of the Mozilla Public
+# * License, v. 2.0. If a copy of the MPL was not distributed with this
+# * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# *
+
+# NPM
+node_modules
+npm*.log
+v8-compile-cache*
+
+# Intellij (directory-based)
+.idea
+*.iml
+
+# Private
+private
+
+# Build files
+/src/client/public/app/*
+
+# Environment Variables
+.env
+
+# CSV files (except ones needed for database tests)
+*.csv
+!/src/server/test/**/*.csv
+!/src/server/data/unit/*.csv
+
+# CSV gz files (except ones needed for database tests)
+*.csv.gz
+!/src/server/test/**/*.csv.gz
+!/src/server/data/unit/*.csv.gz
+
+# Database
+postgres-data
+
+# Text files
+*.txt
+!LICENSE.txt
+
+# Test data (normally for developers)
+src/server/test/db/data/automatedTests/*.csv
+
+# Server tmp directory
+src/server/tmp
+
+# nohup.out is created when working inside the remote container with Visual Studio Code.
+nohup.out
+
+# Mac Finder files - do here so avoid in VSC container
+.DS_Store
+
+# Visual Studio Code settings file
+.vscode/settings.json
+
+# tmp file
+src/server/tmp/*
+
+#ui-testing screenshots
+src/cypress/screenshots/*
